@@ -98,7 +98,8 @@ impl<R: io::Read> Decoder<R> {
         Items { dec: self }
     }
 
-    fn read_data_item(&mut self, first: Option<u8>) -> CborResult<Cbor> {
+    /// Reads a data item.
+    pub fn read_data_item(&mut self, first: Option<u8>) -> CborResult<Cbor> {
         let first = match first {
             Some(first) => first,
             None => try!(self.rdr.read_u8()),
